@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    position: relative;
+    min-height: 2.933333rem;
+    padding: .4rem .266667rem 0;
+    border-bottom: 1px solid #999;
+    .left {
+        flex:3;
+        text-align: center;
+        .img {
+            width: 80%;
+        }
+    }
+    .right {
+        flex:8;
+        .title {
+            font-size: .4rem;
+            font-weight: 700;
+        }
+        .describe {
+            font-size: .253333rem;
+            color: #999;
+            margin: .133333rem 0;
+        }
+        .sale {
+            font-size: .293333rem;
+            margin: .173333rem 0;
+        }
+        .price {
+            font-size: .426667rem;
+            line-height: .426667rem;
+            color: #f60;
+            font-weight: 700;
+        }
+    }
+    .button {
+        position: absolute;
+        right:5%;
+        bottom:10%;
+        font-size: 0;
+        color: #fff;
+        .button-item {
+            display: inline-block;
+            text-align: center;
+            font-size: .5rem;
+            width: .5rem;
+            height: .5rem;
+            line-height: .5rem;
+            background-color: #3190e8;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .number {
+            display: inline-block;
+            font-size: .45rem;
+            width: .5rem;
+            color: #666;
+            text-align: center;
+        }
+    }
+}
