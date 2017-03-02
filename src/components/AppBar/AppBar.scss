@@ -17,4 +17,12 @@ footer {
         flex:1;
         text-align: center;
     }
+    .link {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+    .active {
+        color: #0096ff;
+    }
 }

@@ -2,14 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+
+import Index from './components/Index/Index';
 import Main from './components/Main/Main';
+import CartContainer from './components/CartContainer/CartContainer';
 import rootReducer from './reducers/index'
 
-const store = createStore(rootReducer);
+
+const thunkMiddleware = store => next => action =>
+    typeof action === 'function' ?
+        action(store.dispatch, store.getState) :
+        next(action);
+const logger = store => next => action => {
+    console.group(action.type);
+    console.info('dispatching', action);
+    let result = next(action);
+    console.log('next state', store.getState());
+    console.groupEnd(action.type);
+    return result
+};
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunkMiddleware,logger)
+);
 
 ReactDOM.render(
     <Provider store = {store}>
-        <Main />
+        <Router history = {browserHistory}>
+            <Route path="/" component = {Index}>
+                <IndexRoute component = {Main} />
+                <Route path="/cart" component = {CartContainer} />
+            </Route>
+        </Router>
     </Provider>,
     document.getElementById('app')
 )

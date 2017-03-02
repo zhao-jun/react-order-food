@@ -1,0 +1,47 @@
+.CartFooter {
+    display: flex;
+    height: 1.2rem;
+    position: fixed;
+    left:0;
+    right:0;
+    bottom:1.6rem;
+    border-bottom: 1px solid #999;
+    background: #fff;
+    .left {
+        flex:2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #7c849a;
+            border-radius: 50%;
+        }
+    }
+    .center {
+        flex:9;
+        font-size: .5rem;
+        text-indent: .5rem;
+        .price {
+            font-weight: bold;
+            color: #e8374d;
+            line-height: 1.2rem;
+        }
+    }
+    .right {
+        flex:4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .order {
+            width: 80%;
+            height: 80%;
+            border: none;
+            outline: none;
+            background: #e8374d;
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+}

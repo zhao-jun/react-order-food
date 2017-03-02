@@ -1,9 +1,10 @@
-.container {
+.MainItem {
     display: flex;
     position: relative;
-    min-height: 2.933333rem;
+    min-height: 2.8rem;
     padding: .4rem .266667rem 0;
     border-bottom: 1px solid #999;
+    background: #fff;
     .left {
         flex:3;
         text-align: center;
@@ -27,10 +28,12 @@
             margin: .173333rem 0;
         }
         .price {
+            display: inline-block;
             font-size: .426667rem;
             line-height: .426667rem;
             color: #f60;
             font-weight: 700;
+            padding-bottom: .3rem;
         }
     }
     .button {
@@ -49,10 +52,13 @@
             background-color: #3190e8;
             border-radius: 50%;
             font-weight: bold;
+            vertical-align: middle;
         }
         .number {
             display: inline-block;
             font-size: .45rem;
+            line-height: .5rem;
+            vertical-align: middle;
             width: .5rem;
             color: #666;
             text-align: center;

@@ -7,24 +7,43 @@ import MainList from '../MainList/MainList';
 import AppBar from '../AppBar/AppBar';
 import '../../style/common.scss'
 
-import {addNum} from '../../actions/mainActions';
+import {addNum ,minusNum } from '../../actions/mainActions';
 
-const Main = ({foods,actions}) => (
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+/*    componentDidMount() {
+        this.props.actions.creatFood();
+    }*/
+
+    render(){
+        const {foods,actions} = this.props;
+        return (
+            <div>
+                <MainHeader />
+                <MainList foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
+
+            </div>
+        )
+    }
+}
+
+/*const Main = ({foods,actions}) => (
     <div>
         <MainHeader />
         <MainList foods={foods} onSelectMain={actions.addNum} />
         <AppBar />
     </div>
-)
+)*/
 
 const mapStateToProps = state => ({
-    foods: state.foods
+    foods: state.changeNum.foods
 });
 
-function mapDispatchToProps(dispatch){
-    return{
-        actions : bindActionCreators({addNum},dispatch)
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({addNum,minusNum}, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

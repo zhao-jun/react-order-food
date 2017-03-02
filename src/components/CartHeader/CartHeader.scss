@@ -1,0 +1,26 @@
+.CartHeader {
+    display: flex;
+    border-bottom: 1px solid #999;
+    background: #fff;
+    .left {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #7c849a;
+            border-radius: 50%;
+        }
+    }
+    .right {
+        flex:13;
+        text-indent: .4rem;
+        .shopping {
+            font-size: .4rem;
+            line-height: 1.5rem;
+            font-weight: bold;
+        }
+    }
+}
