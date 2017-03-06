@@ -1,7 +1,9 @@
 .MainHeader {
+    position: fixed;
+    z-index: 100;
     box-sizing: border-box;
     width: 100%;
-    padding: 0.266667rem 0.373333rem;
+    padding: 0.25rem 0.35rem;
     background-color: #0096ff;
     .place {
         font-size: 0.48rem;

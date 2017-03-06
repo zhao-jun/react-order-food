@@ -13,6 +13,22 @@
             border: 1px solid #7c849a;
             border-radius: 50%;
         }
+        .icon-selected {
+            background-color: #e8374d;
+            position: relative;
+            border-color: transparent;
+        }
+        .icon-selected:after {
+            content: "\0020";
+            width: 4px;
+            height: 9px;
+            position: absolute;
+            top:3px;
+            right: 7px;
+            transform: rotate(45deg);
+            border: 2px solid #fff;
+            border-width: 0 2px 2px 0;
+        }
     }
     .right {
         flex:13;

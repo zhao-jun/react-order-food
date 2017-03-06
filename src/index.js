@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
-import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-router';
 
 import Index from './components/Index/Index';
 import Main from './components/Main/Main';
@@ -29,7 +29,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store = {store}>
-        <Router history = {browserHistory}>
+        <Router history = {hashHistory}>
             <Route path="/" component = {Index}>
                 <IndexRoute component = {Main} />
                 <Route path="/cart" component = {CartContainer} />

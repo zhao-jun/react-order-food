@@ -1,8 +1,9 @@
 import React from 'react';
 import MainItem from '../MainItem/MainItem';
+import './MainList.scss';
 
 const MainList = ({foods,addNumMain,minusNumMain}) => (
-    <div>
+    <div className="MainList">
         {
             foods.map(food =>(
                 <MainItem

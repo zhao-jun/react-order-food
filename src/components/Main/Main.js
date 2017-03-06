@@ -4,19 +4,19 @@ import {bindActionCreators} from 'redux';
 
 import MainHeader from '../MainHeader/MainHeader'
 import MainList from '../MainList/MainList';
-import AppBar from '../AppBar/AppBar';
-import '../../style/common.scss'
+import '../../style/common.scss';
+import '../../style/rem.js';
 
 import {addNum ,minusNum } from '../../actions/mainActions';
 
-class Main extends React.Component {
+/*class Main extends React.Component {
     constructor(props) {
         super(props);
     }
 
-/*    componentDidMount() {
+/!*    componentDidMount() {
         this.props.actions.creatFood();
-    }*/
+    }*!/
 
     render(){
         const {foods,actions} = this.props;
@@ -28,15 +28,14 @@ class Main extends React.Component {
             </div>
         )
     }
-}
+}*/
 
-/*const Main = ({foods,actions}) => (
+const Main = ({foods,actions}) => (
     <div>
         <MainHeader />
-        <MainList foods={foods} onSelectMain={actions.addNum} />
-        <AppBar />
+        <MainList foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
     </div>
-)*/
+)
 
 const mapStateToProps = state => ({
     foods: state.changeNum.foods
