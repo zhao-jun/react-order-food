@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-router';
 
 import Index from './components/Index/Index';
-import Main from './components/Main/Main';
-import CartContainer from './components/CartContainer/CartContainer';
+import MainContainer from './containers/MainContainer/MainContainer';
+import CartContainer from './containers/CartContainer/CartContainer';
 import rootReducer from './reducers/index'
 
 
@@ -31,10 +31,10 @@ ReactDOM.render(
     <Provider store = {store}>
         <Router history = {hashHistory}>
             <Route path="/" component = {Index}>
-                <IndexRoute component = {Main} />
+                <IndexRoute component = {MainContainer} />
                 <Route path="/cart" component = {CartContainer} />
             </Route>
         </Router>
     </Provider>,
     document.getElementById('app')
-)
+);

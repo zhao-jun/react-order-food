@@ -96,11 +96,14 @@ function changeSelectedAll(state,selected) {
     return state;
 }
 
-function changeSelectedOne(state,select) {
-    state = fromJS(state).setIn(['foods', action.food.id-1,'select'],1 -select ).toJS();
+function changeSelectedOne(state,food) {
+    state = fromJS(state).setIn(['foods', food.id-1,'select'],1 -food.select ).toJS();
     for(var i=0;i<state.foods.length;i++){
         if(state.foods[i].select == 0){
             state = fromJS(state).set('selected',0 ).toJS();
+            break;
+        } else {
+            state = fromJS(state).set('selected',1 ).toJS();
         }
     }
     return state;
@@ -122,7 +125,7 @@ function changeNum(state = initialState, action) {
         case SELECTED_ALL:
             return changeSelectedAll(state,action.selected);
         case SELECTED_ONE:
-            return changeSelectedOne(state,action.food.select);
+            return changeSelectedOne(state,action.food);
         default:
             return state;
     }

@@ -18,8 +18,8 @@ module.exports = (options = {}) => {
         ],
         output: {
             path: path.resolve(__dirname, 'build'),
-            filename: 'bundle.js',
-            publicPath: './'
+            filename: 'bundle[hash].js',
+            publicPath: '/'
         },
         module: {
             rules: [

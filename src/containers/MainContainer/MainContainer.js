@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import MainHeader from '../MainHeader/MainHeader'
-import MainList from '../MainList/MainList';
+import MainHeader from '../../components/MainHeader/MainHeader'
+import MainList from '../../components/MainList/MainList';
 import '../../style/common.scss';
 import '../../style/rem.js';
 
@@ -30,12 +30,12 @@ import {addNum ,minusNum } from '../../actions/mainActions';
     }
 }*/
 
-const Main = ({foods,actions}) => (
+const MainContainer = ({foods,actions}) => (
     <div>
         <MainHeader />
         <MainList foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
     </div>
-)
+);
 
 const mapStateToProps = state => ({
     foods: state.changeNum.foods
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({addNum,minusNum}, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

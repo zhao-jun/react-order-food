@@ -1,8 +1,9 @@
 import React from 'react';
 import CartItem from '../CartItem/CartItem';
+import './CartList.scss';
 
-const CartList = ({foods,addNumCart,minusNumCart,deleteNumCart}) => (
-    <div>
+const CartList = ({foods,addNumCart,minusNumCart,deleteNumCart,selectedOne}) => (
+    <div className="CartList">
         {
             foods.map(food =>(
                 food.num ?
@@ -12,6 +13,7 @@ const CartList = ({foods,addNumCart,minusNumCart,deleteNumCart}) => (
                     addNum = {addNumCart}
                     minusNum = {minusNumCart}
                     deleteNum = {deleteNumCart}
+                    selectedOne = {selectedOne}
                 /> : null
             ))
         }

@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import CartHeader from '../CartHeader/CartHeader';
-import CartList from '../CartList/CartList';
-import CartFooter from '../CartFooter/CartFooter';
+import CartHeader from '../../components/CartHeader/CartHeader';
+import CartList from '../../components/CartList/CartList';
+import CartFooter from '../../components/CartFooter/CartFooter';
 
 import {addNum ,minusNum } from '../../actions/mainActions';
 import {deleteNum,selectedAll,selectedOne} from '../../actions/cartActions';
