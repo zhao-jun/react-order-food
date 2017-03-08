@@ -7,7 +7,7 @@ import MainList from '../../components/MainList/MainList';
 import '../../style/common.scss';
 import '../../style/rem.js';
 
-import {addNum ,minusNum } from '../../actions/mainActions';
+import {addNum ,minusNum,searchFood } from '../../actions/mainActions';
 
 /*class Main extends React.Component {
     constructor(props) {
@@ -30,19 +30,20 @@ import {addNum ,minusNum } from '../../actions/mainActions';
     }
 }*/
 
-const MainContainer = ({foods,actions}) => (
+const MainContainer = ({condition,foods,actions}) => (
     <div>
-        <MainHeader />
-        <MainList foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
+        <MainHeader condition={condition} searchFood={actions.searchFood} />
+        <MainList condition={condition} foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
     </div>
 );
 
 const mapStateToProps = state => ({
+    condition:state.changeNum,
     foods: state.changeNum.foods
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({addNum,minusNum}, dispatch)
+    actions: bindActionCreators({addNum,minusNum,searchFood}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

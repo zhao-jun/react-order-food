@@ -1,4 +1,4 @@
-import {ADD_NUM, MINUS_NUM,CREATE_FOOD} from '../constants/actionTypes';
+import {ADD_NUM, MINUS_NUM,CREATE_FOOD,SEARCH_FOOD} from '../constants/actionTypes';
 
 export function creatFood(){
     return (dispatch)=> {
@@ -19,4 +19,9 @@ export const addNum = (food) => ({
 export const minusNum = (food) => ({
     type:MINUS_NUM,
     food
+});
+
+export const searchFood = (value) => ({
+    type:SEARCH_FOOD,
+    value
 });

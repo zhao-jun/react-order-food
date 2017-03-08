@@ -38,8 +38,8 @@
     }
     .button {
         position: absolute;
-        right:5%;
-        bottom:10%;
+        right:7%;
+        bottom:12%;
         font-size: 0;
         color: #fff;
         .button-item {
@@ -63,5 +63,32 @@
             color: #666;
             text-align: center;
         }
+        .left-button {
+            color: #3190e8;
+            background-color: #fff;
+            border:1px solid #3190e8;
+        }
+        .hide {
+            opacity: 0;
+            transition: opacity .5s linear;
+        }
+        .in {
+            animation: buttonItem .5s linear;
+        }
+    }
+}
+
+@keyframes buttonItem {
+    0% {
+        opacity: 0;
+        transform:translate(-50px,0) rotate(0deg);
+    }
+    50% {
+        opacity: .5;
+        transform:translate(-25px,-25px) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform:translate(0,0) rotate(360deg);
     }
 }

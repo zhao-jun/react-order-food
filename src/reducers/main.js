@@ -1,4 +1,4 @@
-import {ADD_NUM, MINUS_NUM} from '../constants/actionTypes';
+import {ADD_NUM, MINUS_NUM,SEARCH_FOOD} from '../constants/actionTypes';
 import {DELETE_NUM,SELECTED_ALL,SELECTED_ONE} from '../constants/actionTypes';
 import { fromJS } from 'immutable';
 
@@ -13,12 +13,15 @@ const addMainNum = (state,action) => {
 
 const initialState = {
     selected:1,
+    search:'',
     foods: [
     {
         "id": 1,
         "pic": "one",
         "describe": "香辣多汁，口感鲜美",
         "title": "二块香辣鸡翅",
+        "sale":436,
+        "comment":96,
         "price": 10.5,
         "num": 0,
         "select":1
@@ -28,6 +31,8 @@ const initialState = {
         "pic": "two",
         "describe": "具有神秘配方浓郁的香料所散发的绝佳风味，鲜嫩多汁",
         "title": "一块吮指原味鸡",
+        "sale":415,
+        "comment":95,
         "price": 11,
         "num": 0,
         "select":1
@@ -37,6 +42,8 @@ const initialState = {
         "pic": "three",
         "describe": "整块无骨鸡腿肉，浓郁汉堡酱，香脆甜辣多汁",
         "title": "香辣鸡腿堡",
+        "sale":194,
+        "comment":95,
         "price": 17,
         "num": 0,
         "select":1
@@ -46,6 +53,8 @@ const initialState = {
         "pic": "four",
         "describe": "口感嫩滑，浓郁香甜",
         "title": "葡式蛋挞(经典)1只装",
+        "sale":166,
+        "comment":100,
         "price": 7.5,
         "num": 0,
         "select":1
@@ -55,6 +64,8 @@ const initialState = {
         "pic": "five",
         "describe": "细腻香浓的土豆泥加上润滑可口的鸡汁",
         "title": "醇香土豆泥",
+        "sale":160,
+        "comment":100,
         "price": 6,
         "num": 0,
         "select":1
@@ -64,6 +75,8 @@ const initialState = {
         "pic": "six",
         "describe": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。",
         "title": "老北京鸡肉卷",
+        "sale":159,
+        "comment":92,
         "price": 15,
         "num": 0,
         "select":1
@@ -73,6 +86,8 @@ const initialState = {
         "pic": "seven",
         "describe": "鲜嫩多汁，具烧烤香和甜辣味",
         "title": "二块新奥尔良烤翅",
+        "sale":152,
+        "comment":100,
         "price": 11.5,
         "num": 0,
         "select":1
@@ -82,6 +97,8 @@ const initialState = {
         "pic": "eight",
         "describe": "优质甜玉米，外表金黄诱人，口感香甜多汁。",
         "title": "香甜粟米棒",
+        "sale":93,
+        "comment":100,
         "price": 8,
         "num": 0,
         "select":1
@@ -126,6 +143,8 @@ function changeNum(state = initialState, action) {
             return changeSelectedAll(state,action.selected);
         case SELECTED_ONE:
             return changeSelectedOne(state,action.food);
+        case SEARCH_FOOD:
+            return fromJS(state).set('search',action.value ).toJS();
         default:
             return state;
     }
