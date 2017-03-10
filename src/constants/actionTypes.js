@@ -7,4 +7,5 @@ export const DELETE_FROM_CART    = "DELETE_FROM_CART";
 export const SELECTED_ALL = "SELECTED_ALL";
 export const SELECTED_ONE = "SELECTED_ONE";
 export const SEARCH_FOOD = "SEARCH_FOOD";
-
+export const SCROLL_CHANGE = "SCROLL_CHANGE";
+export const CLICK_SCROLL = "CLICK_SCROLL";

@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import MainHeader from '../../components/MainHeader/MainHeader'
-import MainList from '../../components/MainList/MainList';
+import MainListTitle from '../../components/MainListTitle/MainListTitle';
+import MainListWrap from '../../components/MainListWrap/MainListWrap';
 import '../../style/common.scss';
 import '../../style/rem.js';
+import './MainContainer.scss';
+import initReactFastclick from 'react-fastclick';
+initReactFastclick();
 
-import {addNum ,minusNum,searchFood } from '../../actions/mainActions';
+import {addNum ,minusNum,searchFood,scrollChange,clickScroll} from '../../actions/mainActions';
 
 /*class Main extends React.Component {
     constructor(props) {
@@ -31,9 +35,10 @@ import {addNum ,minusNum,searchFood } from '../../actions/mainActions';
 }*/
 
 const MainContainer = ({condition,foods,actions}) => (
-    <div>
+    <div className="MainContainer">
         <MainHeader condition={condition} searchFood={actions.searchFood} />
-        <MainList condition={condition} foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} />
+        <MainListTitle condition={condition} clickScroll={actions.clickScroll} />
+        <MainListWrap condition={condition} foods={foods} addNumMain={actions.addNum} minusNumMain={actions.minusNum} scrollChange={actions.scrollChange} />
     </div>
 );
 
@@ -43,7 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({addNum,minusNum,searchFood}, dispatch)
+    actions: bindActionCreators({addNum,minusNum,searchFood,scrollChange,clickScroll}, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

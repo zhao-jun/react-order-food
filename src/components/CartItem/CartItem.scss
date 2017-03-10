@@ -15,7 +15,7 @@
             border-radius: 50%;
         }
         .icon-selected {
-            background-color: #e8374d;
+            background-color: #0096ff;
             position: relative;
             border-color: transparent;
         }
@@ -51,8 +51,12 @@
             display: inline-block;
             width: .6rem;
             line-height: .6rem;
-            border:1px solid #3190e8;
+            border:1px solid #ddd;
             margin: .2rem .1rem;
+        }
+        .color {
+            background-color: #efeff4;
+            color: #333;
         }
     }
     .right {

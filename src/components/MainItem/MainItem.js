@@ -9,7 +9,11 @@ const MainItem = ({food,addNum,minusNum}) => (
         <div className="right">
             <p className="title">{food.title}</p>
             <p className="describe">{food.describe}</p>
-            <p className="sale">月售{food.sale}份 好评率{food.comment}%</p>
+            {
+                food.comment ?
+                    <p className="sale">月售{food.sale}份 好评率{food.comment}%</p> :
+                    <p className="sale">月售{food.sale}份</p>
+            }
             <span className="price">&yen;{food.price}</span>
         </div>
         {food.num > 0 ?
@@ -17,12 +21,14 @@ const MainItem = ({food,addNum,minusNum}) => (
                 <span className="button-item left-button in" onClick = {()=>minusNum(food)}>-</span>
                 <span className="number in">{food.num}</span>
                 <span className="button-item" onClick = {addNum.bind(this, food)}>+</span>
+
             </div>
             :
             <div className="button">
                 <span className="button-item left-button hide">-</span>
                 <span className="number hide">{food.num}</span>
                 <span className="button-item" onClick = {addNum.bind(this, food)}>+</span>
+
             </div>
         }
     </div>

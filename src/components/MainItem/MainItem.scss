@@ -2,21 +2,24 @@
     display: flex;
     position: relative;
     min-height: 2.8rem;
-    padding: .4rem .266667rem 0;
+    padding: .4rem .25rem 0;
     border-bottom: 1px solid #999;
     background: #fff;
+    box-sizing: border-box;
     .left {
         flex:3;
-        text-align: center;
+        //text-align: center;
+        padding-left: .2rem;
         .img {
             width: 80%;
         }
     }
     .right {
-        flex:8;
+        flex:9;
         .title {
             font-size: .4rem;
             font-weight: 700;
+            padding: 0;
         }
         .describe {
             font-size: .253333rem;
@@ -26,6 +29,7 @@
         .sale {
             font-size: .293333rem;
             margin: .173333rem 0;
+            color: #666;
         }
         .price {
             display: inline-block;
@@ -38,28 +42,26 @@
     }
     .button {
         position: absolute;
-        right:7%;
-        bottom:12%;
+        right:6%;
+        bottom:10%;
         font-size: 0;
         color: #fff;
         .button-item {
             display: inline-block;
             text-align: center;
-            font-size: .5rem;
-            width: .5rem;
-            height: .5rem;
-            line-height: .5rem;
+            font-size: .6rem;
+            width: .6rem;
+            height: .6rem;
+            line-height: .6rem;
             background-color: #3190e8;
             border-radius: 50%;
             font-weight: bold;
-            vertical-align: middle;
         }
         .number {
             display: inline-block;
-            font-size: .45rem;
-            line-height: .5rem;
-            vertical-align: middle;
-            width: .5rem;
+            font-size: .4rem;
+            line-height: .6rem;
+            width: .62rem;
             color: #666;
             text-align: center;
         }
@@ -73,7 +75,21 @@
             transition: opacity .5s linear;
         }
         .in {
-            animation: buttonItem .5s linear;
+            -webkit-animation:buttonItem .5s linear;
+            -o-animation:buttonItem .5s linear;
+            animation:buttonItem .5s linear;
+        }
+        .moveRound {
+            position: absolute;
+            width: .6rem;
+            height: .6rem;
+            background-color: #3190e8;
+            border-radius: 50%;
+            right: 0;
+            top:0;
+            z-index: 999;
+            transform-origin:-30px 0;
+            animation:moveRound 5s linear 0s infinite;
         }
     }
 }
@@ -90,5 +106,17 @@
     100% {
         opacity: 1;
         transform:translate(0,0) rotate(360deg);
+    }
+}
+
+@keyframes moveRound {
+    0% {
+        transform:rotate(0deg);
+    }
+    20% {
+        transform:rotate(-90deg);
+    }
+    100% {
+        transform:rotate(-180deg);
     }
 }

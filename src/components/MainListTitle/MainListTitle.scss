@@ -1,0 +1,31 @@
+.MainListTitle {
+    flex:2;
+    padding:2.5rem 0 1.28rem;
+    height: calc(100vh - 3.78rem);
+    overflow: auto;
+    .list{
+        width: 100%;
+        font-size: .35rem;
+        border-bottom:1px solid #fff;
+        color: #666;
+        line-height: 1.5rem;
+        text-align: center;
+        position: relative;
+    }
+    .num {
+        position: absolute;
+        right: .08rem;
+        top:.08rem;
+        width: .4rem;
+        height: .4rem;
+        text-align: center;
+        line-height: .4rem;
+        font-size: .3rem;
+        border-radius: 50%;
+        background-color: #ff461d;
+        color: #fff;
+    }
+    .active {
+        background-color: #fff;
+    }
+}

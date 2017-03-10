@@ -1,4 +1,4 @@
-import {ADD_NUM, MINUS_NUM,SEARCH_FOOD} from '../constants/actionTypes';
+import {ADD_NUM, MINUS_NUM,SEARCH_FOOD,SCROLL_CHANGE,CLICK_SCROLL} from '../constants/actionTypes';
 import {DELETE_NUM,SELECTED_ALL,SELECTED_ONE} from '../constants/actionTypes';
 import { fromJS } from 'immutable';
 
@@ -13,98 +13,411 @@ const addMainNum = (state,action) => {
 
 const initialState = {
     selected:1,
-    search:'',
+    // search:'',
+    active:'热销榜',
+    list:[
+        {
+            "id":1,
+            "title":"热销榜",
+            "sub":"one",
+            "num":0
+        },
+        {
+            "id": 2,
+            "title": "优惠",
+            "sub":"two",
+            "num":0
+        },
+        {
+            "id": 3,
+            "title": "超值多人餐",
+            "sub":"three",
+            "num":0
+        },
+        {
+            "id": 4,
+            "title": "美味汉堡",
+            "sub":"four",
+            "num":0
+        },
+        {
+            "id": 5,
+            "title": "轻松卷类",
+            "sub":"five",
+            "num":0
+        }
+    ],
     foods: [
-    {
-        "id": 1,
-        "pic": "one",
-        "describe": "香辣多汁，口感鲜美",
-        "title": "二块香辣鸡翅",
-        "sale":436,
-        "comment":96,
-        "price": 10.5,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 2,
-        "pic": "two",
-        "describe": "具有神秘配方浓郁的香料所散发的绝佳风味，鲜嫩多汁",
-        "title": "一块吮指原味鸡",
-        "sale":415,
-        "comment":95,
-        "price": 11,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 3,
-        "pic": "three",
-        "describe": "整块无骨鸡腿肉，浓郁汉堡酱，香脆甜辣多汁",
-        "title": "香辣鸡腿堡",
-        "sale":194,
-        "comment":95,
-        "price": 17,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 4,
-        "pic": "four",
-        "describe": "口感嫩滑，浓郁香甜",
-        "title": "葡式蛋挞(经典)1只装",
-        "sale":166,
-        "comment":100,
-        "price": 7.5,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 5,
-        "pic": "five",
-        "describe": "细腻香浓的土豆泥加上润滑可口的鸡汁",
-        "title": "醇香土豆泥",
-        "sale":160,
-        "comment":100,
-        "price": 6,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 6,
-        "pic": "six",
-        "describe": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。",
-        "title": "老北京鸡肉卷",
-        "sale":159,
-        "comment":92,
-        "price": 15,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 7,
-        "pic": "seven",
-        "describe": "鲜嫩多汁，具烧烤香和甜辣味",
-        "title": "二块新奥尔良烤翅",
-        "sale":152,
-        "comment":100,
-        "price": 11.5,
-        "num": 0,
-        "select":1
-    },
-    {
-        "id": 8,
-        "pic": "eight",
-        "describe": "优质甜玉米，外表金黄诱人，口感香甜多汁。",
-        "title": "香甜粟米棒",
-        "sale":93,
-        "comment":100,
-        "price": 8,
-        "num": 0,
-        "select":1
-    }
+        {
+            "id": 1,
+            "pic": 1,
+            "describe": "香辣多汁，口感鲜美",
+            "title": "二块香辣鸡翅",
+            "sale":436,
+            "comment":96,
+            "price": 10.5,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 2,
+            "pic": 2,
+            "describe": "具有神秘配方浓郁的香料所散发的绝佳风味，鲜嫩多汁",
+            "title": "一块吮指原味鸡",
+            "sale":415,
+            "comment":95,
+            "price": 11,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 3,
+            "pic": 3,
+            "describe": "整块无骨鸡腿肉，浓郁汉堡酱，香脆甜辣多汁",
+            "title": "香辣鸡腿堡",
+            "sale":194,
+            "comment":95,
+            "price": 17,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 4,
+            "pic": 4,
+            "describe": "口感嫩滑，浓郁香甜",
+            "title": "葡式蛋挞(经典)1只装",
+            "sale":166,
+            "comment":100,
+            "price": 7.5,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 5,
+            "pic": 5,
+            "describe": "细腻香浓的土豆泥加上润滑可口的鸡汁",
+            "title": "醇香土豆泥",
+            "sale":160,
+            "comment":100,
+            "price": 6,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 6,
+            "pic": 6,
+            "describe": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。",
+            "title": "老北京鸡肉卷",
+            "sale":159,
+            "comment":92,
+            "price": 15,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 7,
+            "pic": 7,
+            "describe": "鲜嫩多汁，具烧烤香和甜辣味",
+            "title": "二块新奥尔良烤翅",
+            "sale":152,
+            "comment":100,
+            "price": 11.5,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 8,
+            "pic": 8,
+            "describe": "优质甜玉米，外表金黄诱人，口感香甜多汁。",
+            "title": "香甜粟米棒",
+            "sale":93,
+            "comment":100,
+            "price": 8,
+            "num": 0,
+            "select":1,
+            "belong":"热销榜",
+            "belongID":1
+        },
+        {
+            "id": 9,
+            "pic": 9,
+            "describe": "香辣鸡腿堡1个，老北京鸡肉卷，3块吮指原味鸡，九珍果汁2杯",
+            "title": "鸡王争霸套餐",
+            "sale":11,
+            "comment":90,
+            "price": 66,
+            "num": 0,
+            "select":1,
+            "belong":"优惠",
+            "belongID":2
+        },
+        {
+            "id": 10,
+            "pic": 9,
+            "describe": "香辣鸡腿堡1个，老北京鸡肉卷，3块吮指原味鸡，九珍果汁2杯",
+            "title": "鸡王争霸套餐",
+            "sale":11,
+            "comment":'',
+            "price": 66,
+            "num": 0,
+            "select":1,
+            "belong":"超值多人餐",
+            "belongID":3
+        },
+        {
+            "id": 11,
+            "pic": 11,
+            "describe": "2个香辣鸡腿堡+1个新奥尔良烤鸡腿堡+3块吮指原味鸡+2块香辣鸡翅+4块新奥尔良烤翅+2份醇香土豆泥+2个石榴派+1瓶1.25升百事可乐",
+            "title": "超级外带全家桶",
+            "sale":14,
+            "comment":'',
+            "price": 118,
+            "num": 0,
+            "select":1,
+            "belong":"超值多人餐",
+            "belongID":3
+        },
+        {
+            "id": 12,
+            "pic": 12,
+            "describe": "香辣鸡腿堡1个+新奥尔良烤鸡腿堡1个+香辣鸡翅2块+新奥尔良烤翅2块+土豆泥1份+劲爆鸡米花（小）+石榴派（1只）+百事可乐1瓶)",
+            "title": "堡堡双人餐(new)",
+            "sale":12,
+            "comment":100,
+            "price": 74,
+            "num": 0,
+            "select":1,
+            "belong":"超值多人餐",
+            "belongID":3
+        },
+        {
+            "id": 13,
+            "pic": 13,
+            "describe": "新奥尔良烤翅4块,香辣鸡翅2块,吮指原味鸡1块,黄金鸡块5块,波纹霸王薯条1份,石榴派1个",
+            "title": "六味小吃桶",
+            "sale":12,
+            "comment":100,
+            "price": 59,
+            "num": 0,
+            "select":1,
+            "belong":"超值多人餐",
+            "belongID":3
+        },
+        {
+            "id": 14,
+            "pic": 14,
+            "describe": "鲜嫩Q弹的全虾排,外脆里嫩的鸡腿肉, 双重鲜美。",
+            "title": "伴鸡伴虾堡",
+            "sale":6,
+            "comment":100,
+            "price": 19,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 15,
+            "pic": 15,
+            "describe": "嫩弹手撕猪肉，香浓BBQ烧烤酱, 喷香燕麦面包。",
+            "title": "BBQ手撕猪肉堡",
+            "sale":1,
+            "comment":'',
+            "price": 18,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 16,
+            "pic": 16,
+            "describe": "伴鸡伴虾堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "伴鸡伴虾堡土豆泥餐",
+            "sale":1,
+            "comment":'',
+            "price": 41,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 17,
+            "pic": 17,
+            "describe": "劲脆鸡腿堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "劲脆鸡腿堡土豆泥餐",
+            "sale":1,
+            "comment":'',
+            "price": 39,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 18,
+            "pic": 17,
+            "describe": "香辣鸡腿堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "香辣鸡腿堡土豆泥餐",
+            "sale":7,
+            "comment":100,
+            "price": 39,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 19,
+            "pic": 19,
+            "describe": "新奥尔良烤鸡腿堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "新奥良腿堡土豆泥餐",
+            "sale":1,
+            "comment":'',
+            "price": 40,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 20,
+            "pic": 20,
+            "describe": "BBQ手撕猪肉堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "手撕猪肉堡土豆泥餐",
+            "sale":2,
+            "comment":'',
+            "price": 40,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 21,
+            "pic": 21,
+            "describe": "整块无骨鸡腿肉, 浓郁汉堡酱，香脆鲜辣多汁。",
+            "title": "香辣鸡腿堡",
+            "sale":193,
+            "comment":100,
+            "price": 17,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 22,
+            "pic": 22,
+            "describe": "选用超大无骨鸡腿肉烤制，鲜嫩多汁，甜中带辣。",
+            "title": "新奥尔良烤鸡腿堡",
+            "sale":56,
+            "comment":100,
+            "price": 18,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 23,
+            "pic": 23,
+            "describe": "整块无骨鸡腿肉,浓郁汉堡酱，香脆鲜嫩多汁。",
+            "title": "劲脆鸡腿堡",
+            "sale":43,
+            "comment":100,
+            "price": 17,
+            "num": 0,
+            "select":1,
+            "belong":"美味汉堡",
+            "belongID":4
+        },
+        {
+            "id": 24,
+            "pic": 24,
+            "describe": "BBQ手撕猪肉卷1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "手撕猪肉卷土豆泥餐",
+            "sale":1,
+            "comment":'',
+            "price": 40,
+            "num": 0,
+            "select":1,
+            "belong":"轻松卷类",
+            "belongID":5
+        },
+        {
+            "id": 25,
+            "pic": 25,
+            "describe": "老北京鸡肉卷1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+            "title": "老北京卷土豆泥餐",
+            "sale":2,
+            "comment":'',
+            "price": 38,
+            "num": 0,
+            "select":1,
+            "belong":"轻松卷类",
+            "belongID":5
+        },
+        {
+            "id": 26,
+            "pic": 26,
+            "describe": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。",
+            "title": "老北京鸡肉卷",
+            "sale":158,
+            "comment":92,
+            "price": 15,
+            "num": 0,
+            "select":1,
+            "belong":"轻松卷类",
+            "belongID":5
+        },
+        {
+            "id": 23,
+            "pic": 23,
+            "describe": "嫩弹手撕猪肉，香浓BBQ烧烤酱",
+            "title": "BBQ手撕猪肉卷",
+            "sale":28,
+            "comment":100,
+            "price": 17,
+            "num": 0,
+            "select":1,
+            "belong":"轻松卷类",
+            "belongID":5
+        }
 ]
 };
+
+
+function addNum(state,food) {
+    var oldNum = state.list[food.belongID-1].num+1;
+    state = fromJS(state).setIn(['foods', food.id-1,'num'],food.num+1 ).setIn(['list', food.belongID-1,'num'],oldNum).toJS();
+
+    return state;
+}
+
+function minusNum(state,food) {
+    var oldNum = state.list[food.belongID-1].num-1;
+    state = fromJS(state).setIn(['foods', food.id-1,'num'],food.num-1 ).setIn(['list', food.belongID-1,'num'],oldNum).toJS();
+
+    return state;
+}
+
+
 function changeSelectedAll(state,selected) {
     state = fromJS(state).set('selected',1- selected ).toJS();
     for(var i=0;i<state.foods.length;i++){
@@ -126,17 +439,62 @@ function changeSelectedOne(state,food) {
     return state;
 }
 
+function changeActive(state,height) {
+/*    var oneRem = document.documentElement.getBoundingClientRect().width/10,
+        titleHeight = oneRem * 0.8,*/
+    var arr=[],len=state.list.length,i;
+    for (i=0;i<len;i++){
+        arr.push(document.getElementById(state.list[i].sub).scrollHeight)
+    }
+    var newArr = arr.reduce(function(a,b) {
+        var c = a.length === 0 ? 0 : a[a.length-1];
+        a.push(c+b);
+        return a;
+    },[]);
+    for (var j=0;j<newArr.length-1;j++){
+        if(height>newArr[j] && height < newArr[j +1]) {
+            return fromJS(state).set('active',state.list[j+1].title ).toJS();
+        } else if (height<newArr[0]) {
+            return fromJS(state).set('active',state.list[0].title ).toJS();
+        }
+    }
+    // return fromJS(state).set('active',state.list[0].title ).toJS();
+    return state;
+}
+
+function clickScroll(state,id) {
+
+    var arr=[],len=state.list.length,i;
+    for (i=0;i<len;i++){
+        arr.push(document.getElementById(state.list[i].sub).scrollHeight)
+    }
+    var newArr = arr.reduce(function(a,b) {
+        var c = a.length === 0 ? 0 : a[a.length-1];
+        a.push(c+b);
+        return a;
+    },[]);
+    //此处会触发changeActive，所以上面必须返回state
+    var oMainListWrap = document.querySelector('.MainListWrap');
+    oMainListWrap.scrollTop= (id-2)>=0 ? newArr[(id-2)]:0;
+    state = fromJS(state).set('active',state.list[id-1].title ).toJS();
+
+    return state;
+}
+
+
 
 function changeNum(state = initialState, action) {
     switch (action.type) {
 /*        case CREAT_FOOD:
             return action.foods;*/
         case ADD_NUM:
-            return fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num+1 ).toJS();
+            return addNum(state,action.food);
+            // fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num+1 ).toJS();
             //错误例子，不能直接修改state
             // return addMainNum(state,action);
         case MINUS_NUM:
-            return fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num-1 ).toJS();
+            return minusNum(state,action.food);
+            // fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num-1 ).toJS();
         case DELETE_NUM:
             return fromJS(state).setIn(['foods', action.food.id-1,'num'],0 ).toJS();
         case SELECTED_ALL:
@@ -145,6 +503,10 @@ function changeNum(state = initialState, action) {
             return changeSelectedOne(state,action.food);
         case SEARCH_FOOD:
             return fromJS(state).set('search',action.value ).toJS();
+        case CLICK_SCROLL:
+            return clickScroll(state,action.id);
+        case SCROLL_CHANGE:
+            return changeActive(state,action.height);
         default:
             return state;
     }

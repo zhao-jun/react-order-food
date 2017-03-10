@@ -1,4 +1,4 @@
-import {ADD_NUM, MINUS_NUM,CREATE_FOOD,SEARCH_FOOD} from '../constants/actionTypes';
+import {ADD_NUM, MINUS_NUM,CREATE_FOOD,SEARCH_FOOD,SCROLL_CHANGE,CLICK_SCROLL} from '../constants/actionTypes';
 
 export function creatFood(){
     return (dispatch)=> {
@@ -25,3 +25,14 @@ export const searchFood = (value) => ({
     type:SEARCH_FOOD,
     value
 });
+
+export const scrollChange = (height) => ({
+    type:SCROLL_CHANGE,
+    height
+});
+
+export const clickScroll = (id) => ({
+    type:CLICK_SCROLL,
+    id
+});
+

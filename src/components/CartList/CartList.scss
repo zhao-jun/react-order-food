@@ -1,3 +1,8 @@
 .CartList {
+    //height: calc(100vh - 3.98rem);
+    box-sizing: border-box;
+    height: 100%;
+    padding-top: 1.5rem;
     padding-bottom: 2.48rem;
+    overflow: auto;
 }

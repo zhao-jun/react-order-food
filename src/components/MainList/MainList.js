@@ -2,10 +2,11 @@ import React from 'react';
 import MainItem from '../MainItem/MainItem';
 import './MainList.scss';
 
-const MainList = ({condition,foods,addNumMain,minusNumMain}) => (
+const MainList = ({condition,listItem,foods,addNumMain,minusNumMain}) => (
     <div className="MainList">
         {
             foods.map(food =>{
+                if(food.belong == listItem.title){
                 if (!condition.search) {
                     return(
                     <MainItem
@@ -24,7 +25,7 @@ const MainList = ({condition,foods,addNumMain,minusNumMain}) => (
                     addNum = {addNumMain}
                     minusNum = {minusNumMain}
                 /> : null
-            })
+            }})
         }
     </div>
 );

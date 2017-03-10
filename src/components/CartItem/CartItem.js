@@ -17,9 +17,9 @@ const CartItem = ({food,addNum,minusNum,deleteNum,selectedOne}) => (
         <div className="center">
             <div className="name">{food.title}</div>
             <div className="num">
-                <span className="change" onClick={()=>minusNum(food)}>-</span>
+                <span className="change color" onClick={()=>minusNum(food)}>-</span>
                 <span className="change">{food.num}</span>
-                <span className="change" onClick={()=>addNum(food)}>+</span>
+                <span className="change color" onClick={()=>addNum(food)}>+</span>
             </div>
         </div>
         <div className="right">

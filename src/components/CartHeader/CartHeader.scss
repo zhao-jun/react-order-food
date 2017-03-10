@@ -1,4 +1,11 @@
 .CartHeader {
+    position: fixed;
+    z-index: 1000;
+    left:0;
+    top:0;
+    right: 0;
+    box-sizing: border-box;
+    height: 1.5rem;
     display: flex;
     border-bottom: 1px solid #999;
     background: #fff;
@@ -14,7 +21,7 @@
             border-radius: 50%;
         }
         .icon-selected {
-            background-color: #e8374d;
+            background-color: #0096ff;
             position: relative;
             border-color: transparent;
         }

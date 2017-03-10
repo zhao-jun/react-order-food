@@ -26,11 +26,11 @@ module.exports = (options = {}) => {
                 {
                     test: /\.scss$/,
                     include: path.resolve(__dirname, 'src'),
-                    use: ['style-loader', 'css-loader', 'sass-loader']
+                    use: ['style-loader', 'css-loader', 'sass-loader','postcss-loader']
                 },
                 {test: /\.js[x]?$/, exclude: /node_modules/, use: 'babel-loader'},
                 // { test: /\.(png|jpg)$/, use: 'file-loader'},
-                {test: /\.(png|jpg)$/, use: [{loader: 'url-loader', options: {limit: 10000}}]}
+                {test: /\.(png|jpg)$/, use: [{loader: 'url-loader', options: {limit: 15000,name:'./[name].[ext]?[hash]'}}]}
                 //可以使/开头的文件相对于root目录解析
                 // {test: /\.html$/, use: [{loader: 'html-loader', options: {root: path.resolve(__dirname, 'src'), attrs: ['img:src', 'link:href']}}]}
             ]

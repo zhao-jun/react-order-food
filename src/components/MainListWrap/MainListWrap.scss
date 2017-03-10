@@ -1,0 +1,13 @@
+.MainListWrap {
+    flex:8;
+    padding:2.5rem 0 1.28rem;
+    height: calc(100vh - 3.78rem);
+    overflow: scroll;
+    .title {
+        padding-left: .2rem;
+        height: .8rem;
+        line-height: .8rem;
+        font-size: .4rem;
+        color: #666;
+    }
+}

@@ -1,4 +1,4 @@
-html,body,p,input {
+html,body,p,input,ul {
     margin:0;
     padding:0;
 }
@@ -7,4 +7,7 @@ html {
 }
 body {
     background: #eee;
+}
+html, body {
+    -webkit-tap-highlight-color: transparent;
 }
