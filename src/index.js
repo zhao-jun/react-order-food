@@ -7,10 +7,11 @@ import { browserHistory,hashHistory , Router, Route, IndexRoute } from 'react-ro
 import Index from './components/Index/Index';
 import MainContainer from './containers/MainContainer/MainContainer';
 import CartContainer from './containers/CartContainer/CartContainer';
-import rootReducer from './reducers/index'
+import rootReducer from './reducers/index';
 
 
-const thunkMiddleware = store => next => action =>
+
+/*const thunkMiddleware = store => next => action =>
     typeof action === 'function' ?
         action(store.dispatch, store.getState) :
         next(action);
@@ -21,10 +22,10 @@ const logger = store => next => action => {
     console.log('next state', store.getState());
     console.groupEnd(action.type);
     return result
-};
+};*/
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunkMiddleware,logger)
+    // applyMiddleware(thunkMiddleware,logger)
 );
 
 ReactDOM.render(

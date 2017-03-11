@@ -23,7 +23,8 @@ const CartItem = ({food,addNum,minusNum,deleteNum,selectedOne}) => (
             </div>
         </div>
         <div className="right">
-            <span className="price">&yen;{food.price}</span><br />
+            <span className="price">单价:&yen;{food.price}</span>
+            <span className="count">&yen;{food.price*food.num}</span>
             <img className="delete" src={require('../../images/delete.png')} onClick = {()=>deleteNum(food)} />
         </div>
     </div>

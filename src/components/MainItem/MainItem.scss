@@ -56,6 +56,8 @@
             background-color: #3190e8;
             border-radius: 50%;
             font-weight: bold;
+            position: relative;
+            z-index: 200;
         }
         .number {
             display: inline-block;
@@ -87,9 +89,15 @@
             border-radius: 50%;
             right: 0;
             top:0;
-            z-index: 999;
-            transform-origin:-30px 0;
-            animation:moveRound 5s linear 0s infinite;
+            z-index: 100;
+            -webkit-transform-origin:-40px 0;
+            -moz-transform-origin:-40px 0;
+            -ms-transform-origin:-40px 0;
+            -o-transform-origin:-40px 0;
+            transform-origin:-40px 0;
+            -webkit-animation:moveRound 1s linear;
+            -o-animation:moveRound 1s linear;
+            animation:moveRound 1s linear;
         }
     }
 }
@@ -116,7 +124,10 @@
     20% {
         transform:rotate(-90deg);
     }
-    100% {
+    40% {
         transform:rotate(-180deg);
+    }
+    100% {
+        transform:translate(0,100vh);
     }
 }

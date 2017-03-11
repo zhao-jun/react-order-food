@@ -1,12 +1,12 @@
 import React from  'react';
-import AppBar from '../AppBar/AppBar';
+import AppBarContainer from '../../containers/AppBarContainer/AppBarContainer';
 
 const Index = (props) => (
     <div>
         <div>
             {props.children}
         </div>
-        <AppBar />
+        <AppBarContainer />
     </div>
 );
 

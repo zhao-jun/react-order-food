@@ -1,3 +1,5 @@
 .MainList {
-
+    .MainItem:last-of-type {
+        border: 1px solid transparent;
+    }
 }

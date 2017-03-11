@@ -20,15 +20,13 @@ const MainItem = ({food,addNum,minusNum}) => (
             <div className="button">
                 <span className="button-item left-button in" onClick = {()=>minusNum(food)}>-</span>
                 <span className="number in">{food.num}</span>
-                <span className="button-item" onClick = {addNum.bind(this, food)}>+</span>
-
+                <span className="button-item" onClick = {(e)=>addNum(food,e.target.parentElement)}>+</span>
             </div>
             :
             <div className="button">
                 <span className="button-item left-button hide">-</span>
                 <span className="number hide">{food.num}</span>
-                <span className="button-item" onClick = {addNum.bind(this, food)}>+</span>
-
+                <span className="button-item" onClick = {(e)=>addNum(food,e.target.parentElement)}>+</span>
             </div>
         }
     </div>

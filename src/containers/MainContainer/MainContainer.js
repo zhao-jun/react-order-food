@@ -8,8 +8,6 @@ import MainListWrap from '../../components/MainListWrap/MainListWrap';
 import '../../style/common.scss';
 import '../../style/rem.js';
 import './MainContainer.scss';
-import initReactFastclick from 'react-fastclick';
-initReactFastclick();
 
 import {addNum ,minusNum,searchFood,scrollChange,clickScroll} from '../../actions/mainActions';
 

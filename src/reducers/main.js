@@ -1,9 +1,10 @@
 import {ADD_NUM, MINUS_NUM,SEARCH_FOOD,SCROLL_CHANGE,CLICK_SCROLL} from '../constants/actionTypes';
 import {DELETE_NUM,SELECTED_ALL,SELECTED_ONE} from '../constants/actionTypes';
+import {APPBAR_MAIN,APPBAR_CART} from '../constants/actionTypes';
 import { fromJS } from 'immutable';
 
 /*
-//错误方法
+//错误方法，直接修改
 const addMainNum = (state,action) => {
     state.foods.push(action.food);
     return state;
@@ -15,6 +16,7 @@ const initialState = {
     selected:1,
     // search:'',
     active:'热销榜',
+    top:'',
     list:[
         {
             "id":1,
@@ -44,6 +46,24 @@ const initialState = {
             "id": 5,
             "title": "轻松卷类",
             "sub":"five",
+            "num":0
+        },
+        {
+            "id": 6,
+            "title": "缤纷小食",
+            "sub":"six",
+            "num":0
+        },
+        {
+            "id": 7,
+            "title": "吮指原味鸡",
+            "sub":"seven",
+            "num":0
+        },
+        {
+            "id": 8,
+            "title": "丰富配餐",
+            "sub":"eight",
             "num":0
         }
     ],
@@ -387,8 +407,8 @@ const initialState = {
             "belongID":5
         },
         {
-            "id": 23,
-            "pic": 23,
+            "id": 27,
+            "pic": 27,
             "describe": "嫩弹手撕猪肉，香浓BBQ烧烤酱",
             "title": "BBQ手撕猪肉卷",
             "sale":28,
@@ -398,12 +418,213 @@ const initialState = {
             "select":1,
             "belong":"轻松卷类",
             "belongID":5
+        },
+        {
+            "id": 28,
+            "pic": 28,
+            "describe": "吮指原味鸡2块 + 土豆泥+黄金鸡块（5块） + 九珍果汁饮料1杯",
+            "title": "吮指原味鸡套餐",
+            "sale":8,
+            "comment":'',
+            "price": 43,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 29,
+            "pic": 29,
+            "describe": "鲜嫩多汁，具烧烤香和甜辣味",
+            "title": "二块新奥尔良烤翅",
+            "sale":159,
+            "comment":100,
+            "price": 11.5,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 30,
+            "pic": 30,
+            "describe": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。",
+            "title": "黄金鸡块5块装",
+            "sale":75,
+            "comment":100,
+            "price": 10,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 31,
+            "pic": 31,
+            "describe": "香辣多汁，口感鲜美。",
+            "title": "二块香辣鸡翅",
+            "sale":441,
+            "comment":96,
+            "price": 10.5,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 32,
+            "pic": 32,
+            "describe": "将鸡腿肉和鸡软骨精心腌制后串成一串，包上锡纸烤到喷香四溢。鸡肉更加鲜嫩多汁，软骨更加脆嫩耐嚼。",
+            "title": "1根骨肉相连加",
+            "sale":12,
+            "comment":100,
+            "price": 8,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 33,
+            "pic": 33,
+            "describe": "将鸡腿肉和鸡软骨精心腌制后串成一串，包上锡纸烤到喷香四溢。鸡肉更加鲜嫩多汁，软骨更加脆嫩耐嚼。",
+            "title": "2根骨肉相连加",
+            "sale":26,
+            "comment":100,
+            "price": 13.5,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 34,
+            "pic": 34,
+            "describe": "将鸡腿肉加工成小巧造型，用经典的香辣腌料，然后手工裹上优质面粉，烹炸至金黄喷香。酥脆，鲜嫩，香辣。",
+            "title": "劲爆鸡米花(小)",
+            "sale":26,
+            "comment":100,
+            "price": 11,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 35,
+            "pic": 35,
+            "describe": "将鸡腿肉加工成小巧造型，用经典的香辣腌料，然后手工裹上优质面粉，烹炸至金黄喷香。酥脆，鲜嫩，香辣。",
+            "title": "劲爆鸡米花(大)",
+            "sale":74,
+            "comment":100,
+            "price": 13.5,
+            "num": 0,
+            "select":1,
+            "belong":"缤纷小食",
+            "belongID":6
+        },
+        {
+            "id": 36,
+            "pic": 36,
+            "describe": "香辣鸡腿堡1个 + 吮指原味鸡1块 + 九珍果汁饮料1杯",
+            "title": "吮指原味鸡套餐A",
+            "sale":9,
+            "comment":'',
+            "price": 35,
+            "num": 0,
+            "select":1,
+            "belong":"吮指原味鸡",
+            "belongID":7
+        },
+        {
+            "id": 37,
+            "pic": 37,
+            "describe": "具有神秘配方浓郁的香料所散发的绝佳风味，鲜嫩多汁。",
+            "title": "一块吮指原味鸡",
+            "sale":413,
+            "comment":95,
+            "price": 11,
+            "num": 0,
+            "select":1,
+            "belong":"吮指原味鸡",
+            "belongID":7
+        },
+        {
+            "id": 38,
+            "pic": 38,
+            "describe": "优质甜玉米，外表金黄诱人，口感香甜多汁。",
+            "title": "香甜粟米棒",
+            "sale":92,
+            "comment":100,
+            "price": 8,
+            "num": 0,
+            "select":1,
+            "belong":"丰富配餐",
+            "belongID":8
+        },
+        {
+            "id": 39,
+            "pic": 39,
+            "describe": "选用蔬菜配以蛋花精制而成",
+            "title": "芙蓉荟蔬汤",
+            "sale":51,
+            "comment":100,
+            "price": 8,
+            "num": 0,
+            "select":1,
+            "belong":"丰富配餐",
+            "belongID":8
+        },
+        {
+            "id": 40,
+            "pic": 40,
+            "describe": "细腻香浓的土豆泥加上润滑可口的鸡汁",
+            "title": "醇香土豆泥",
+            "sale":150,
+            "comment":100,
+            "price": 6,
+            "num": 0,
+            "select":1,
+            "belong":"丰富配餐",
+            "belongID":8
+        },
+        {
+            "id": 41,
+            "pic": 41,
+            "describe": "六种鲜脆蔬菜，搭配特制猕猴桃酱，酸甜爽口，健康之选！",
+            "title": "鲜蔬沙拉",
+            "sale":12,
+            "comment":100,
+            "price": 13.5,
+            "num": 0,
+            "select":1,
+            "belong":"丰富配餐",
+            "belongID":8
         }
-]
+    ]
 };
 
 
-function addNum(state,food) {
+function addNum(state,food,parentElement) {
+    //添加动画
+    if(parentElement) {
+        var oSpan = document.createElement('span');
+        oSpan.className = 'moveRound';
+        parentElement.appendChild(oSpan);
+        var newSpan = parentElement.querySelectorAll('.moveRound');
+        newSpan = newSpan[newSpan.length - 1];
+        setTimeout(()=>(parentElement.removeChild(newSpan)), 900);
+
+        //若是在下单界面添加，改变商品和购物车选中状态
+        state = fromJS(state).set('selected',1 ).toJS();
+        var i,len = state.foods.length;
+        for(i=0;i<len;i++){
+            if(state.foods[i].select!=1) {
+                state = fromJS(state).setIn(['foods', i, 'select'], 1).toJS();
+            }
+        }
+    }
+
     var oldNum = state.list[food.belongID-1].num+1;
     state = fromJS(state).setIn(['foods', food.id-1,'num'],food.num+1 ).setIn(['list', food.belongID-1,'num'],oldNum).toJS();
 
@@ -417,10 +638,29 @@ function minusNum(state,food) {
     return state;
 }
 
+function deleteNum(state,food) {
+
+    var oldNum = state.list[food.belongID-1].num-food.num;
+    state = fromJS(state).setIn(['foods', food.id-1,'num'],0 ).setIn(['foods', food.id-1,'select'],1 ).setIn(['list', food.belongID-1,'num'],oldNum).toJS();
+
+    //删除商品后购物车选中状态检查
+    var len = state.foods.length,i;
+    for(i=0;i<len;i++){
+        //存在未选中，则返回
+        if (state.foods[i].select!==1){
+            return state;
+        }
+    }
+    //若都选中，则改变状态
+    state = fromJS(state).set('selected',1 ).toJS();
+    return state;
+}
+
 
 function changeSelectedAll(state,selected) {
     state = fromJS(state).set('selected',1- selected ).toJS();
-    for(var i=0;i<state.foods.length;i++){
+    var i,len = state.foods.length;
+    for(i=0;i<len;i++){
         state = fromJS(state).setIn(['foods', i,'select'],1- selected ).toJS();
     }
     return state;
@@ -428,7 +668,8 @@ function changeSelectedAll(state,selected) {
 
 function changeSelectedOne(state,food) {
     state = fromJS(state).setIn(['foods', food.id-1,'select'],1 -food.select ).toJS();
-    for(var i=0;i<state.foods.length;i++){
+    var i,len = state.foods.length;
+    for(i=0;i<len;i++){
         if(state.foods[i].select == 0){
             state = fromJS(state).set('selected',0 ).toJS();
             break;
@@ -442,6 +683,7 @@ function changeSelectedOne(state,food) {
 function changeActive(state,height) {
 /*    var oneRem = document.documentElement.getBoundingClientRect().width/10,
         titleHeight = oneRem * 0.8,*/
+    //对高度统计放入数组
     var arr=[],len=state.list.length,i;
     for (i=0;i<len;i++){
         arr.push(document.getElementById(state.list[i].sub).scrollHeight)
@@ -481,6 +723,17 @@ function clickScroll(state,id) {
     return state;
 }
 
+function changeScroll(state,condition) {
+
+    setTimeout(()=>{var oMainListWrap = document.querySelector('.MainListWrap');oMainListWrap.scrollTop= condition.top},0);
+    return state;
+}
+function markScroll(state,condition) {
+    var oMainListWrap = document.querySelector('.MainListWrap');
+    state = fromJS(state).set('top',oMainListWrap.scrollTop ).toJS();
+    return state;
+}
+
 
 
 function changeNum(state = initialState, action) {
@@ -488,7 +741,7 @@ function changeNum(state = initialState, action) {
 /*        case CREAT_FOOD:
             return action.foods;*/
         case ADD_NUM:
-            return addNum(state,action.food);
+            return addNum(state,action.food,action.parentElement);
             // fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num+1 ).toJS();
             //错误例子，不能直接修改state
             // return addMainNum(state,action);
@@ -496,7 +749,8 @@ function changeNum(state = initialState, action) {
             return minusNum(state,action.food);
             // fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num-1 ).toJS();
         case DELETE_NUM:
-            return fromJS(state).setIn(['foods', action.food.id-1,'num'],0 ).toJS();
+            return deleteNum(state,action.food);
+            // fromJS(state).setIn(['foods', action.food.id-1,'num'],0 ).toJS();
         case SELECTED_ALL:
             return changeSelectedAll(state,action.selected);
         case SELECTED_ONE:
@@ -507,6 +761,10 @@ function changeNum(state = initialState, action) {
             return clickScroll(state,action.id);
         case SCROLL_CHANGE:
             return changeActive(state,action.height);
+        case APPBAR_MAIN:
+            return changeScroll(state,action.condition);
+        case APPBAR_CART:
+            return markScroll(state,action.condition);
         default:
             return state;
     }
