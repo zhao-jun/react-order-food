@@ -11,10 +11,10 @@ export function creatFood(){
         }
 }
 
-export const addNum = (food,parentElement) => ({
+export const addNum = (food,parentNode) => ({
     type:ADD_NUM,
     food,
-    parentElement
+    parentNode
 });
 
 export const minusNum = (food) => ({

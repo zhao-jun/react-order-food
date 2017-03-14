@@ -605,28 +605,19 @@ const initialState = {
 };
 
 
-function addNum(state,food,parentElement) {
+function addNum(state,food,parentNode) {
     //添加动画
-    if(parentElement) {
+    if(parentNode) {
         var oSpan = document.createElement('span');
         oSpan.className = 'moveRound';
-        parentElement.appendChild(oSpan);
-        var newSpan = parentElement.querySelectorAll('.moveRound');
+        parentNode.appendChild(oSpan);
+        var newSpan = parentNode.getElementsByClassName('moveRound');
         newSpan = newSpan[newSpan.length - 1];
-        setTimeout(()=>(parentElement.removeChild(newSpan)), 900);
-
-        //若是在下单界面添加，改变商品和购物车选中状态
-        state = fromJS(state).set('selected',1 ).toJS();
-        var i,len = state.foods.length;
-        for(i=0;i<len;i++){
-            if(state.foods[i].select!=1) {
-                state = fromJS(state).setIn(['foods', i, 'select'], 1).toJS();
-            }
-        }
+        setTimeout(()=>(parentNode.removeChild(newSpan)), 900);
     }
-
-    var oldNum = state.list[food.belongID-1].num+1;
-    state = fromJS(state).setIn(['foods', food.id-1,'num'],food.num+1 ).setIn(['list', food.belongID-1,'num'],oldNum).toJS();
+    var local = food.belongID-1;
+    var oldNum = state.list[local].num+1;
+    state = fromJS(state).setIn(['foods', food.id-1,'num'],food.num+1 ).setIn(['list', local,'num'],oldNum).toJS();
 
     return state;
 }
@@ -660,23 +651,27 @@ function deleteNum(state,food) {
 function changeSelectedAll(state,selected) {
     state = fromJS(state).set('selected',1- selected ).toJS();
     var i,len = state.foods.length;
+    state = fromJS(state);
     for(i=0;i<len;i++){
-        state = fromJS(state).setIn(['foods', i,'select'],1- selected ).toJS();
+        state = state.setIn(['foods', i,'select'],1- selected );
     }
+    state = state.toJS();
     return state;
 }
 
 function changeSelectedOne(state,food) {
     state = fromJS(state).setIn(['foods', food.id-1,'select'],1 -food.select ).toJS();
     var i,len = state.foods.length;
+    var newState = fromJS(state);
     for(i=0;i<len;i++){
         if(state.foods[i].select == 0){
-            state = fromJS(state).set('selected',0 ).toJS();
+            newState = newState.set('selected',0 );
             break;
         } else {
-            state = fromJS(state).set('selected',1 ).toJS();
+            newState = newState.set('selected',1 );
         }
     }
+    state = newState.toJS();
     return state;
 }
 
@@ -726,6 +721,16 @@ function clickScroll(state,id) {
 function changeScroll(state,condition) {
 
     setTimeout(()=>{var oMainListWrap = document.querySelector('.MainListWrap');oMainListWrap.scrollTop= condition.top},0);
+
+    //改变商品和购物车选中状态
+    var newState = fromJS(state).set('selected',1 );
+    var i,len = state.foods.length;
+    for(i=0;i<len;i++){
+        if(state.foods[i].select!=1) {
+            newState = newState.setIn(['foods', i, 'select'], 1);
+        }
+    }
+    state = newState.toJS();
     return state;
 }
 function markScroll(state,condition) {
@@ -741,7 +746,7 @@ function changeNum(state = initialState, action) {
 /*        case CREAT_FOOD:
             return action.foods;*/
         case ADD_NUM:
-            return addNum(state,action.food,action.parentElement);
+            return addNum(state,action.food,action.parentNode);
             // fromJS(state).setIn(['foods', action.food.id-1,'num'],action.food.num+1 ).toJS();
             //错误例子，不能直接修改state
             // return addMainNum(state,action);

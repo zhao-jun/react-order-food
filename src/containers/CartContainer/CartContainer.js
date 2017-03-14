@@ -9,17 +9,21 @@ import CartFooter from '../../components/CartFooter/CartFooter';
 import {addNum ,minusNum } from '../../actions/mainActions';
 import {deleteNum,selectedAll,selectedOne} from '../../actions/cartActions';
 
-const CartContainer = ({state,foods,actions}) => (
+const CartContainer = ({state,foods,actions,total}) => (
      <div>
          <CartHeader state={state} selectedAll={actions.selectedAll} />
          <CartList foods={foods} addNumCart={actions.addNum} minusNumCart={actions.minusNum} deleteNumCart = {actions.deleteNum} selectedOne={actions.selectedOne} />
-         <CartFooter state={state} selectedAll={actions.selectedAll} />
+         <CartFooter state={state} selectedAll={actions.selectedAll} total={total} />
      </div>
 );
 
+//计算总价
+const total = (foods)=>(foods.map(food=>(food.price * food.num * food.select)).reduce((prev, cur) => prev + cur));
+
 const mapStateToProps = state => ({
     state: state.changeNum,
-    foods: state.changeNum.foods
+    foods: state.changeNum.foods,
+    total:total(state.changeNum.foods)
 });
 
 const mapDispatchToProps = dispatch => ({

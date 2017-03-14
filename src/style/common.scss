@@ -4,6 +4,7 @@ html,body,p,input,ul {
 }
 html {
     font-family: Helvetica Neue,Tahoma,Arial,PingFangSC-Regular,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+    -webkit-user-select: none;
 }
 body {
     background: #eee;

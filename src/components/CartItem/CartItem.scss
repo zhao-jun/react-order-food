@@ -41,7 +41,9 @@
         flex:6;
         font-size: .5rem;
         .name {
-
+            font-size: .4rem;
+            line-height: .8rem;
+            color: #666;
             font-weight: bold;
             padding-top: .2rem;
         }
@@ -53,6 +55,9 @@
             line-height: .6rem;
             border:1px solid #ddd;
             margin: .2rem .1rem;
+            font-size: .4rem;
+            font-weight: bold;
+            color: #333;
         }
         .color {
             background-color: #efeff4;
